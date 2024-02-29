@@ -2,7 +2,6 @@ import { useState , useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "./mycontext";
 import axios from "axios";
-import { error } from "console";
 
 function Logon() {
   let navigate = useNavigate();
@@ -13,31 +12,32 @@ function Logon() {
     setUserid(e.target.value);
   }
   let logon = ()=>{
-    console.log("ifa문밖에",context)
     if (parseInt(userid)>=1 && parseInt(userid)<=10 ){
+      const controller = new AbortController();
       console.log(userid)
       const hosturl = 'https://jsonplaceholder.typicode.com/users/'+userid;
       axios.get(hosturl)
       .then((res)=>{
         console.log(res.data) 
         let username = res.data.name
-        context.dispatch({type:"LOGON", value:{userid:userid,username:username, isLogon:true}})
+        context.dispatch({type:"LOGON", value:{userid:userid, username:username, isLogon:true}})
         navigate("/album/list", {})
         setMsg("로그인성공")
         })
         .catch((error)=>{
           console.log(error)
-        })    
+        })
+        return () => {
+          console.log("마지막 정리작업을 하고 나간다 ");
+          controller.abort();
+        }   
     }
     else{
-      console.log("로그인실패")
       context.dispatch({type:"LOGON", value:{userid:"",username:"", isLogon:false}})
-      console.log("아래",context)
       setUserid("");
       (document.getElementById("userid") as HTMLInputElement)?.focus()
       setMsg("User ID는 1~10번만 가능합니다.")
     }
-    
   }
   return ( 
     <div>

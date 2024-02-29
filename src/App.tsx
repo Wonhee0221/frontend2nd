@@ -1,3 +1,4 @@
+
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './component/layout';
@@ -9,7 +10,7 @@ import PhotoList from './component/photoList';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='App' style={{ maxWidth: '800px', margin: '0 auto' }}>
       <AppProvider>
         <Router>
           <Routes>

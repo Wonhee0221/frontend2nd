@@ -17,6 +17,7 @@ export type ItemType={
     userId:number;
     title:string; 
 }
+
 export type PhotoType={
   "albumId": number;
   "id": number;

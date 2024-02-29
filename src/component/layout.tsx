@@ -6,9 +6,7 @@ import  '../App.css'
 function Layout() {
   const context = useContext(AppContext);
   const storedState = getStateFromLocalStorage("appState");
-  const { userid,username,isLogon} = storedState;
-  console.log("2122",context)
-  console.log("ewqewrq",storedState)
+  const { userid,username} = storedState;
   const navigate = useNavigate();
   const logout = () => {
     navigate("/", {});
