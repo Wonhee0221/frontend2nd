@@ -1,0 +1,13 @@
+.image-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+  grid-gap:10px; /* 그리드사이의 간격 */ 
+}
+/*image-grid : 클래스를 만들었음 
+  .img-grid 클래스 안에있는 img태그에만 적용해라
+*/
+.img-grid img{
+  /* width가 줄어드는 비율로 height 도 조절해라 */
+  width: 100%; 
+  height: auto;
+}
